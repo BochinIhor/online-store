@@ -1,0 +1,17 @@
+<header class="header">
+  <a class="logo" routerLink="/">TechPro</a>
+
+  <a class="button" *ngIf="!isLoggedIn" routerLink="/register">Register</a>
+
+  <a class="button" *ngIf="!isLoggedIn" routerLink="/login">Login</a>
+
+  <a class="button" *ngIf="isLoggedIn && isAdmin" routerLink="/adminpanel" style="width: 9rem">(Admin Panel)</a>
+
+  <a class="button" *ngIf="isLoggedIn" routerLink="/cart">Cart <i class="bi bi-cart"></i></a>
+
+  <a class="button" *ngIf="isLoggedIn && !isAdmin" routerLink="/profile">My Profile</a>
+
+  <a class="button" *ngIf="isLoggedIn" style="color: #c7c7c7;" (click)="logoutClick()">Logout</a>
+
+
+</header>

@@ -1,0 +1,46 @@
+<div class="userProfile">
+  <mat-card>
+    <mat-card-header>
+      <h1>Profile</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="userProfileForm" (ngSubmit)="saveUser()">
+        <mat-form-field class="example-full-width">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" style="pointer-events: none">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Old Password</mat-label>
+          <input type="password" matInput>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>New Password</mat-label>
+          <input type="password" matInput formControlName="password">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Phone number</mat-label>
+          <span matPrefix>&nbsp; +38 &nbsp;</span>
+          <input type="tel" matInput placeholder="012-345-6789" formControlName="phoneNumber">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Firstname</mat-label>
+          <input matInput formControlName="firstname">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Lastname</mat-label>
+          <input matInput formControlName="lastname">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="primary">Save</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

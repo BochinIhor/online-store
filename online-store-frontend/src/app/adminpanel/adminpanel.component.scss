@@ -1,0 +1,70 @@
+* {
+  margin: 0.5vw 0.5vh;
+}
+
+.editUsersForm {
+  display: block;
+  width: 98%;
+  position: absolute;
+  margin: 5rem 1% 0 1%;
+  padding: 0;
+}
+
+p {
+  font-family: Arial, sans-serif;
+}
+
+.btn-edit {
+  text-align: right;
+}
+
+h2 {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.table-header {
+  width: 90%;
+  text-align: right;
+  margin: auto auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button-add-book {
+  background: #1b9e1b;
+  color: #ffffff;
+}
+
+.button-remove-rows {
+  background: red;
+  color: #ffffff;
+}
+
+.button-remove {
+  color: red;
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 100% !important;
+}
+
+.form-input {
+  padding-right: 5px;
+}
+
+mat-table {
+  display: table;
+  background-color: #f3f3f3;
+  border: 1px solid;
+  margin: 1rem auto;
+}
+
+tr:nth-child(odd) {
+  background-color: #e1e1e1;
+}
+
+mat-table th {
+  background-color: #c9c9c9;
+}

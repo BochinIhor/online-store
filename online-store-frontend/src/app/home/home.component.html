@@ -1,0 +1,25 @@
+
+<div class="content">
+  <div class="filter-block">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Filter items..." [(ngModel)]="filters.keyword" name="keyword" (input)="getProducts()">
+    </mat-form-field>
+
+    <select name="sortBy" [(ngModel)]="filters.sortBy" (change)="getProducts()">
+      <option>Name</option>
+      <option>Price</option>
+    </select>
+
+  </div>
+  <ul>
+    <li *ngFor="let product of products">
+      <div>
+        <img src="{{product.imageUrl}}">
+        <a>{{product.name}}</a>
+        <p>{{product.price | currency:"UAH"}}</p>
+        <p>{{product.description}}</p>
+        <button>Add to cart</button>
+      </div>
+    </li>
+  </ul>
+</div>

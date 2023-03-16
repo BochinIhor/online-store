@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-header>
+    <h1>Registration</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="registerForm" (ngSubmit)="proceedRegistration()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password(must contain at least 8 characters)</mat-label>
+        <input type="password" matInput formControlName="password">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="accent">Register</button>
+      <a mat-raised-button color="primary" routerLink="/login">Back to login</a>
+    </form>
+  </mat-card-content>
+</mat-card>

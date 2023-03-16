@@ -1,0 +1,73 @@
+$white: #fff;
+$navbar-color: #241c8d;
+$nav-color-hover: #3427bb;
+$text-color: #fff;
+
+$nav-font-size: 1.3rem;
+
+$nav-height: 4rem;
+$login-width: 6rem;
+
+$transition-time: 0.2s;
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: $navbar-color;
+  font-size: $nav-font-size;
+  box-shadow: 0 0 1rem #000000;
+  text-align: end;
+
+
+  & * {
+    display: inline-block;
+    text-align: center;
+    line-height: 4rem;
+  }
+
+
+  a {
+    text-decoration: none;
+    color: $text-color;
+    cursor: pointer;
+    margin: 0 1rem;
+    i {
+      font-size: 0.9rem;
+    }
+  }
+
+
+  .logo {
+    float: left;
+    position: relative;
+    text-align: center;
+    width: 8rem;
+    font-family: "Arial Black", bold, sans-serif;
+    text-decoration: underline 0.2rem $navbar-color;
+    transition: $transition-time;
+    &:hover {
+      transition: $transition-time;
+      text-decoration: underline 0.2rem #fa6f03;
+    }
+  }
+
+
+  .button {
+    width: $login-width;
+    text-align: center;
+    background-color: $navbar-color;
+    transition: $transition-time;
+    text-decoration: underline 0.2rem $navbar-color;
+    &:hover {
+      transition: $transition-time;
+      text-decoration: underline 0.2rem;
+    }
+  }
+}
+
