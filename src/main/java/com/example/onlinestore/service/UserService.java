@@ -10,7 +10,6 @@ public interface UserService {
 
     User save(User user);
 
-    @Transactional
     User findById(String id);
 
     void update(String username, User user);

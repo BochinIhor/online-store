@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Entity
 @Table(name = "products", schema = "store_schema")
 @Getter
@@ -17,19 +15,24 @@ public class Product {
     private Long id;
 
     private String name;
-    private String type;
-    private BigDecimal price;
+    private String fullName;
+    private String category;
+    private int price;
+    @Column(columnDefinition="TEXT", length = 2048)
     private String description;
-    private String imageUrl;
+    @Column(columnDefinition="TEXT", length = 2048)
+    private String imageUrls;
 
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", category='" + category + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
+                ", imageUrls='" + imageUrls + '\'' +
                 '}';
     }
 }

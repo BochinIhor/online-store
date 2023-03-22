@@ -17,12 +17,14 @@ $transition-time: 0.2s;
 }
 
 .header {
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   background-color: $navbar-color;
   font-size: $nav-font-size;
   box-shadow: 0 0 1rem #000000;
   text-align: end;
+  z-index: 999;
 
 
   & * {

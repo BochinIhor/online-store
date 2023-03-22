@@ -1,11 +1,14 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {User, UserColumns} from "../models/user";
+import {User, UserColumns} from "../entity/user";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {UpdatepopupComponent} from "../updatepopup/updatepopup.component";
 import {UserService} from "../services/user/user.service";
+import {Product} from "../entity/product";
+import {FormBuilder, Validators} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-adminpanel',
@@ -21,7 +24,9 @@ export class AdminpanelComponent implements OnInit {
   resultsLength = 0;
 
   constructor(private userService: UserService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private formBuilder: FormBuilder,
+              private toastrService: ToastrService) {
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -30,6 +35,8 @@ export class AdminpanelComponent implements OnInit {
   ngOnInit() {
     this.getUsers();
   }
+
+  /*USERS LIST CODE START*/
 
   getUsers(): void {
     this.userService.getAllUsers()
@@ -97,5 +104,23 @@ export class AdminpanelComponent implements OnInit {
       isSelected: event.checked,
     }))
   }
+  /*USERS LIST CODE END*/
 
+
+
+  /*PRODUCT ADD CODE START*/
+  newProduct!: Product;
+
+  productForm = this.formBuilder.group({
+    name: this.formBuilder.control(''),
+    type: this.formBuilder.control(''),
+    price: this.formBuilder.control(''),
+    description: this.formBuilder.control(''),
+    imageUrl: this.formBuilder.control(''),
+  })
+
+  saveProduct() {
+
+  }
+  /*PRODUCT ADD CODE END*/
 }

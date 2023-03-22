@@ -1,8 +1,9 @@
 export class Product {
   id!: number;
   name!: string;
-  type!: string;
+  fullName!: string;
+  category!: string;
   price!: number;
   description!: string;
-  imageUrl!: string;
+  imageUrls!: string;
 }

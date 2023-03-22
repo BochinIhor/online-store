@@ -1,18 +1,40 @@
 * {
-  margin: 0.5vw 0.5vh;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
 }
 
-.editUsersForm {
+.page-content {
   display: block;
-  width: 98%;
-  position: absolute;
-  margin: 5rem 1% 0 1%;
-  padding: 0;
-}
+  width: 96%;
+  position: relative;
+  margin: 1% 2%;
+
+  .editUsersForm {
+    margin: 0;
+    margin-bottom: 1%;
+    padding: 1vh 0;
+    width: 100%;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.5rem 1rem rgba(50, 50, 50, 0.5);
+  }
+
+  .addProduct {
+    margin: 0;
+    margin-bottom: 1%;
+    padding: 1vh 0;
+    width: 100%;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.5rem 1rem rgba(50, 50, 50, 0.5);
+  }
 
 p {
   font-family: Arial, sans-serif;
 }
+
+  h1 {
+    margin: 0 auto;
+  }
 
 .btn-edit {
   text-align: right;
@@ -24,15 +46,13 @@ h2 {
 }
 
 .table-header {
-  width: 90%;
-  text-align: right;
-  margin: auto auto 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 1% 2%;
+  & > button {
+    display: inline-block;
+  }
 }
 
-.button-add-book {
+.button-add-row {
   background: #1b9e1b;
   color: #ffffff;
 }
@@ -67,4 +87,13 @@ tr:nth-child(odd) {
 
 mat-table th {
   background-color: #c9c9c9;
+}
+
+  mat-form-field {
+    margin: 0 1%;
+  }
+  img {
+    height: 4vh;
+    width: 4vh;
+  }
 }

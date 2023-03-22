@@ -2,7 +2,7 @@ import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth/auth.service";
 import {ToastrService} from "ngx-toastr";
-import {User} from "../models/user";
+import {User} from "../entity/user";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {UserService} from "../services/user/user.service";
 

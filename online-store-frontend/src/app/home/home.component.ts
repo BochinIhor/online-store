@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {ProductService} from "../services/product/product.service";
 import {Router} from "@angular/router";
-import {Product} from "../models/product";
+import {Product} from "../entity/product";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,9 @@ import {Product} from "../models/product";
 })
 export class HomeComponent {
   product = new Product();
+  previewImg!: string;
   products: Product[] = [];
+  currentUser = sessionStorage.getItem('username');
 
   constructor(private productService: ProductService,
               private _router: Router) {}
@@ -26,7 +29,7 @@ export class HomeComponent {
 
   getProducts(): void {
     this.productService.getAllProducts().subscribe(productsData => {
-      this.products = this.filterExpenses(productsData);
+      this.products = this.filterProducts(productsData);
     });
   }
 
@@ -42,7 +45,7 @@ export class HomeComponent {
     this.products = this.products.filter((product: Product) => product.id != id);
   }
 
-  filterExpenses(products: Product[]) {
+  filterProducts(products: Product[]) {
     return products.filter(e =>{
       return e.name.toLowerCase().includes(this.filters.keyword.toLowerCase());
       // @ts-ignore
@@ -53,6 +56,14 @@ export class HomeComponent {
         return a.price < b.price ? -1: 1;
       }
     })
+  }
+
+  getProductImage(id: number): string {
+    this.productService.getProductById(id).subscribe(res => {
+      this.product = res;
+    })
+    this.previewImg = this.product.imageUrls.split(',')[0];
+    return this.previewImg;
   }
 
 }

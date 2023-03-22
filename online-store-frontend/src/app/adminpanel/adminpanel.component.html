@@ -1,16 +1,17 @@
+<div class="page-content">
+
 <div class="editUsersForm">
 
+  <h1>Edit users</h1>
   <article class="table-header">
-    <form action="">
       <button class="button-remove-rows" mat-button (click)="removeSelectedUsers()">
         Remove Users
       </button>
-    </form>
   </article>
 
   <table mat-table [dataSource]="myDataSource" matSort matSortStart="asc">
     <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
-      <th mat-header-cell *matHeaderCellDef [ngSwitch]="col.key" mat-sort-header>
+      <th mat-header-cell *matHeaderCellDef [ngSwitch]="col.key" mat-sort-header [disabled]="col.key === 'isSelected'">
       <span *ngSwitchCase="'isSelected'">
         <mat-checkbox
           (change)="selectAll($event)"
@@ -51,5 +52,57 @@
 
   </table>
   <mat-paginator [length]="resultsLength" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+</div>
+
+
+<div class="addProduct">
+
+  <mat-card>
+    <mat-card-header>
+      <h1>Add product</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="productForm" (ngSubmit)="saveProduct()">
+
+        <div class="top-half-product">
+        <mat-form-field class="example-full-width">
+          <mat-label>Product name</mat-label>
+          <input matInput formControlName="name">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Product type</mat-label>
+          <input matInput formControlName="type">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="price">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        </div>
+
+
+        <div class="bottom-half-product">
+        <mat-form-field class="example-full-width">
+          <mat-label>Product description</mat-label>
+          <textarea matInput formControlName="description" placeholder="Enter product description..."></textarea>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Product image url</mat-label>
+          <textarea matInput formControlName="imageUrl" placeholder="Enter url to product image..."></textarea>
+        </mat-form-field>
+          <img src="" alt="">
+        </div>
+        <button mat-raised-button type="submit" color="primary">Add product</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>
 
 </div>

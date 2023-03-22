@@ -2,6 +2,7 @@ package com.example.onlinestore.controller;
 
 import com.example.onlinestore.entity.Product;
 import com.example.onlinestore.service.ProductService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,11 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
+
+    @PostConstruct
+    public void initProducts() {
+        //productService.initProducts();
+    }
 
     @GetMapping
     public ResponseEntity<List<Product>> get() {

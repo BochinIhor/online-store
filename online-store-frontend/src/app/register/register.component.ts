@@ -3,7 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../services/auth/auth.service";
 import {Router} from "@angular/router";
-import {User} from "../models/user";
+import {User} from "../entity/user";
 
 @Component({
   selector: 'app-register',

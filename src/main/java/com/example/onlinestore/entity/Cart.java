@@ -10,10 +10,7 @@ import lombok.Setter;
 @Setter
 public class Cart {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private Long userId;
+    private String username;
     private String products;
 
 }

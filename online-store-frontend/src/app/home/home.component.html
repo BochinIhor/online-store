@@ -14,7 +14,7 @@
   <ul>
     <li *ngFor="let product of products">
       <div>
-        <img src="{{product.imageUrl}}">
+        <img src="{{getProductImage(product.id)}}" alt="">
         <a>{{product.name}}</a>
         <p>{{product.price | currency:"UAH"}}</p>
         <p>{{product.description}}</p>

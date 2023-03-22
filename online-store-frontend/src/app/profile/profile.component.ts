@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {User} from "../models/user";
+import {User} from "../entity/user";
 import {ToastrService} from "ngx-toastr";
 import {Observable} from "rxjs";
 import {UserService} from "../services/user/user.service";
