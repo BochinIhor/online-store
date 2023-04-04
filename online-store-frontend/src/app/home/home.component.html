@@ -1,25 +1,59 @@
+<div class="page-content">
+  <!--<div class="filter-block">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Filter items..." [(ngModel)]="filters.keyword" name="keyword" (input)="getProducts()">
+      </mat-form-field>
+  </div>-->
 
-<div class="content">
-  <div class="filter-block">
-    <mat-form-field>
-      <input matInput type="text" placeholder="Filter items..." [(ngModel)]="filters.keyword" name="keyword" (input)="getProducts()">
-    </mat-form-field>
+  <div class="content">
 
-    <select name="sortBy" [(ngModel)]="filters.sortBy" (change)="getProducts()">
-      <option>Name</option>
-      <option>Price</option>
-    </select>
+  <div class="filters">
+    <h2>Фільтри</h2>
+    <div class="filter-group">
 
-  </div>
-  <ul>
-    <li *ngFor="let product of products">
-      <div>
-        <img src="{{getProductImage(product.id)}}" alt="">
-        <a>{{product.name}}</a>
-        <p>{{product.price | currency:"UAH"}}</p>
-        <p>{{product.description}}</p>
-        <button>Add to cart</button>
+      <select name="sortBy" [(ngModel)]="filters.sortBy" (change)="getProducts()">
+        <option  selected="selected">Від дешевих до дорогих</option>
+        <option>Від дорогих до дешевих</option>
+        <option>Назва</option>
+      </select>
+      <p></p>
+      <p>Ціна Від</p>
+      <input type="text" min="0" max="1000" value="0" class="range-slider">
+      <p>До</p>
+      <input type="text" min="0" max="1000" value="0" class="range-slider">
+    </div>
+    <div class="filter-group">
+      <h3>Бренд</h3>
+      <div class="checkbox">
+        <input type="checkbox" id="brand1" name="brand1">
+        <label for="brand1">Бренд 1</label>
       </div>
+      <div class="checkbox">
+        <input type="checkbox" id="brand2" name="brand2">
+        <label for="brand2">Бренд 2</label>
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" id="brand3" name="brand3">
+        <label for="brand3">Бренд 3</label>
+      </div>
+    </div>
+  </div>
+
+  <ul class="product-list">
+    <li class="product-item" *ngFor="let product of products">
+      <div class="img-container" (click)="goToProduct(product.id)">
+      <img class="preview-img" loading="lazy" src="{{getProductImage(product, 1)}}" alt="">
+      <img class="preview-img-hidden" loading="lazy" src="{{getProductImage(product, 2)}}" alt="">
+      </div>
+      <p class="product-title" (click)="goToProduct(product.id)">{{product.name}}</p>
+      <div class="price-block">
+        <span class="product-price">{{product.price | currency: "UAH "}}</span>
+        <button (click)="addToCart(product)"><i class="bi bi-cart"></i></button>
+      </div>
+      <span></span>
     </li>
   </ul>
+
+  </div>
+
 </div>

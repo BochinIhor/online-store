@@ -1,6 +1,8 @@
 import {Component, DoCheck} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../services/auth/auth.service";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {CartComponent} from "../cart/cart.component";
 
 @Component({
   selector: 'app-header',
@@ -13,6 +15,7 @@ export class HeaderComponent implements DoCheck {
   isAdmin = false;
 
   constructor(private router: Router,
+              private dialog: MatDialog,
               private authService: AuthService) {
   }
 
@@ -26,5 +29,24 @@ export class HeaderComponent implements DoCheck {
   logoutClick() {
     sessionStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+  openCart() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.enterAnimationDuration = '500ms';
+    dialogConfig.exitAnimationDuration = '500ms';
+    dialogConfig.width = '70%';
+    dialogConfig.height = '80%';
+    dialogConfig.data = {};
+
+    const updateDialog = this.dialog.open(CartComponent, dialogConfig);
+
+    updateDialog.afterClosed().subscribe(result => {
+    });
+
+    const dialogSubmitSubscription =
+      updateDialog.componentInstance.submitClicked.subscribe(() => {
+        dialogSubmitSubscription.unsubscribe();
+      });
   }
 }

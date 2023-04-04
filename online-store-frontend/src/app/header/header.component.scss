@@ -1,6 +1,6 @@
 $white: #fff;
-$navbar-color: #241c8d;
-$nav-color-hover: #3427bb;
+$navbar-color: #28272d;
+$nav-color-hover: #414148;
 $text-color: #fff;
 
 $nav-font-size: 1.3rem;
@@ -14,62 +14,92 @@ $transition-time: 0.2s;
 * {
   margin: 0;
   padding: 0;
+  font-size: $nav-font-size;
 }
 
-.header {
+nav {
   position: sticky;
   top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   background-color: $navbar-color;
-  font-size: $nav-font-size;
-  box-shadow: 0 0 1rem #000000;
-  text-align: end;
-  z-index: 999;
+  z-index: 99;
+}
 
+ul {
+  margin: 0;
+  padding: 0.5rem;
+  list-style: none;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
 
-  & * {
-    display: inline-block;
-    text-align: center;
-    line-height: 4rem;
-  }
+li {
+  height: 100%;
+}
 
+a {
+  text-align: center;
+  padding: 0.5rem;
+  margin: 0 0.5vw;
+  display: block;
+  text-decoration: none;
+  color: $text-color;
+  cursor: pointer;
+  background-color: $navbar-color;
+  transition: $transition-time;
+  border-radius: 0.4rem;
 
-  a {
-    text-decoration: none;
-    color: $text-color;
-    cursor: pointer;
-    margin: 0 1rem;
-    i {
-      font-size: 0.9rem;
-    }
-  }
-
-
-  .logo {
-    float: left;
-    position: relative;
-    text-align: center;
-    width: 8rem;
-    font-family: "Arial Black", bold, sans-serif;
-    text-decoration: underline 0.2rem $navbar-color;
+  &:hover {
     transition: $transition-time;
-    &:hover {
-      transition: $transition-time;
-      text-decoration: underline 0.2rem #fa6f03;
-    }
+    background-color: $nav-color-hover;
   }
+}
 
+i {
+  font-size: 1.8rem;
+}
 
-  .button {
-    width: $login-width;
-    text-align: center;
+.logo {
+  position: relative;
+  margin: 0 5vw;
+  font-family: "Arial Black", bold, sans-serif;
+  text-decoration: underline 0.2rem $navbar-color;
+  transition: $transition-time;
+  &:hover {
+    transition: $transition-time;
     background-color: $navbar-color;
-    transition: $transition-time;
-    text-decoration: underline 0.2rem $navbar-color;
-    &:hover {
-      transition: $transition-time;
-      text-decoration: underline 0.2rem;
-    }
+    text-decoration: underline 0.2rem #fa6f03;
   }
+}
+
+.search-input {
+  padding: 1%;
+  margin: 0 30vw 0 15vw;
+  width: 25vw;
+}
+
+.sub-menu-parent:focus .sub-menu,
+.sub-menu-parent:focus-within .sub-menu,
+.sub-menu-parent:hover .sub-menu {
+  visibility: visible; /* shows sub-menu */
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(0%);
+  transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+}
+
+.sub-menu {
+  visibility: hidden; /* hides sub-menu */
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  transform: translateY(-2em);
+  z-index: -1;
+  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
 }
 

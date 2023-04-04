@@ -2,6 +2,7 @@ package com.example.onlinestore.controller;
 
 import com.example.onlinestore.entity.Cart;
 import com.example.onlinestore.service.CartService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,11 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+    @PostConstruct
+    public void initCarts() {
+        //cartService.initCarts();
+    }
+
     @GetMapping
     public ResponseEntity<List<Cart>> get() {
         List<Cart> allCarts = cartService.getAllCarts();
@@ -28,20 +34,20 @@ public class CartController {
         return new ResponseEntity<Cart>(newCart, HttpStatus.OK);
     }
 
-    @GetMapping("/{cart}")
-    public ResponseEntity<Cart> get(@PathVariable("cart") String username) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Cart> get(@PathVariable("id") String username) {
         Cart cart = cartService.findByName(username);
         return new ResponseEntity<Cart>(cart, HttpStatus.OK);
     }
 
-    @PutMapping("/{cart}")
-    public ResponseEntity<Cart> put(@PathVariable("cart") String username, @RequestBody Cart cart) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Cart> put(@PathVariable("id") String username, @RequestBody Cart cart) {
         cartService.update(username, cart);
         return new ResponseEntity<Cart>(cart, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{cart}")
-    public ResponseEntity<String> delete(@PathVariable("cart") String username) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") String username) {
         cartService.deleteCart(username);
         return new ResponseEntity<String>("Cart was deleted.", HttpStatus.OK);
     }

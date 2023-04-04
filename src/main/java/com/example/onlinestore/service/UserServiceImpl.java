@@ -13,7 +13,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-
     @Override
     public List<User> getAllUsers() {
         return (List<User>) userRepository.findAll();
@@ -48,23 +47,22 @@ public class UserServiceImpl implements UserService {
     }
 
     public void initRolesAndUser() {
-
         User adminUser = new User();
         adminUser.setUsername("admin");
         adminUser.setFirstname("Admin");
         adminUser.setLastname("Admin");
-        adminUser.setPassword("adminpass");
+        adminUser.setPassword("admin");
         adminUser.setRole("admin");
+        //adminUser.setCart("1,1;11,1;12,1;15,2");
         userRepository.save(adminUser);
 
-        User user = new User();
-        user.setUsername("user1");
-        user.setFirstname("User1");
-        user.setLastname("User1Last");
-        user.setPassword("user1pass");
-        user.setRole("user");
-        userRepository.save(user);
-
-
+        User user1 = new User();
+        user1.setUsername("user1");
+        user1.setFirstname("User1");
+        user1.setLastname("User1Last");
+        user1.setPassword("user1pass");
+        user1.setRole("user");
+        //user1.setCart("1,1;11,1;12,1;15,2");
+        userRepository.save(user1);
     }
 }

@@ -1,4 +1,25 @@
-<header class="header">
+<nav>
+  <ul>
+    <li><a class="logo" routerLink="/">TechPro</a></li>
+    <li><input type="text" placeholder="Search..." class="search-input" /></li>
+    <li style="position: absolute; margin-left: 75vw; margin-top: 1.8rem"><a *ngIf="isLoggedIn && isAdmin" routerLink="/adminpanel" style="width: 9rem">(Admin Panel)</a></li>
+    <li class="sub-menu-parent"><a><i class="bi bi-person"></i></a>
+      <ul class="sub-menu">
+        <li><a *ngIf="!isLoggedIn" routerLink="/login">Login</a></li>
+        <li><a *ngIf="!isLoggedIn" routerLink="/register">Register</a></li>
+        <li><a *ngIf="isLoggedIn" routerLink="/profile">My Profile</a></li>
+        <li><a *ngIf="isLoggedIn" style="color: #c7c7c7;" (click)="logoutClick()">Logout</a></li>
+      </ul>
+    </li>
+    <li><a *ngIf="isLoggedIn" (click)="openCart()"><i class="bi bi-cart"></i></a></li>
+  </ul>
+</nav>
+
+
+
+
+
+<!--<header class="header">
   <a class="logo" routerLink="/">TechPro</a>
 
   <a class="button" *ngIf="!isLoggedIn" routerLink="/register">Register</a>
@@ -15,3 +36,4 @@
 
 
 </header>
+-->

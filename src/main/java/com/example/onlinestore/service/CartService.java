@@ -14,4 +14,6 @@ public interface CartService {
     void update(String username, Cart cart);
 
     void deleteCart(String username);
+
+    void initCarts();
 }

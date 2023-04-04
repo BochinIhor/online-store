@@ -36,7 +36,7 @@ import {MatSelectModule} from "@angular/material/select";
     UpdatepopupComponent,
     CartComponent,
     ProfileComponent,
-    AdminpanelComponent
+    AdminpanelComponent,
   ],
   imports: [
     BrowserModule,

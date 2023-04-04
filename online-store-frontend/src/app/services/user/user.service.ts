@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {forkJoin, Observable} from "rxjs";
-import {Product} from "../../entity/product";
 import {User} from "../../entity/user";
 
 @Injectable({
