@@ -17,7 +17,6 @@ export class CartComponent implements OnInit {
   currentUser = sessionStorage.getItem('username');
   newProduct: Product;
   curProduct!: Product;
-  cart!: Cart;
   productsString: string[] = [];
   products: Product[] = [];
   ids: number[] = [];
@@ -35,22 +34,14 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCart();
-  }
-
-  getCart() {
-    this.cartService.getCartByUsername(this.currentUser).subscribe(cart => {
-      this.cart = cart;
-    }).unsubscribe();
     this.getProductList();
   }
 
   getProductList() {
-    this.productsString = this.cart.products.split(";");
-    console.log(this.productsString);
+    // @ts-ignore
+    this.productsString = sessionStorage.getItem('cart').split(";");
     for(let i = 0; i < this.productsString.length; i++) {
       this.ids[i] = Number(this.productsString[i].split(',')[0]);
-      console.log(this.ids[i]);
       this.productService.getProductById(this.ids[i]).subscribe(res => {
         this.products[i] = res;
       }).unsubscribe();

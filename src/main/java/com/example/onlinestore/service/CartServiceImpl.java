@@ -43,6 +43,12 @@ public class CartServiceImpl implements CartService{
     }
 
     public void initCarts() {
+
+        Cart adminCart = new Cart();
+        adminCart.setUsername("admin");
+        adminCart.setProducts("1,1;11,1;12,1;15,2");
+        cartRepository.save(adminCart);
+
         Cart cart1 = new Cart();
         cart1.setUsername("user1");
         cart1.setProducts("1,1;11,1;12,1;15,2");

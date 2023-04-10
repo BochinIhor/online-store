@@ -35,6 +35,7 @@ export class ProfileComponent {
   getCurrentUser() {
     this.userService.getUserByName(sessionStorage.getItem('username')).subscribe(res => {
       this.currentUser = res;
+      console.log(this.currentUser.username);
       this.userProfileForm.controls.username.setValue(this.currentUser.username);
       this.userProfileForm.controls.email.setValue(this.currentUser.email);
       this.userProfileForm.controls.firstname.setValue(this.currentUser.firstname);

@@ -15,6 +15,7 @@ $transition-time: 0.2s;
   margin: 0;
   padding: 0;
   font-size: $nav-font-size;
+  box-sizing: border-box;
 }
 
 nav {
@@ -25,19 +26,42 @@ nav {
   width: 100%;
   background-color: $navbar-color;
   z-index: 99;
-}
-
-ul {
-  margin: 0;
-  padding: 0.5rem;
-  list-style: none;
-  overflow: hidden;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+
+  div {
+    display: flex;
+    //width: 100% / 3;
+    align-items: center;
+    height: 5rem;
+
+    &:nth-child(1) {
+      padding-left: 5%;
+    }
+
+    &:nth-child(3) {
+      padding-right: 10%;
+    }
+  }
 }
 
-li {
-  height: 100%;
+.logo {
+  position: relative;
+  font-family: "Arial Black", bold, sans-serif;
+  text-decoration: underline 0.2rem $navbar-color;
+  transition: $transition-time;
+  &:hover {
+    transition: $transition-time;
+    background-color: $navbar-color;
+    text-decoration: underline 0.2rem #fa6f03;
+  }
+}
+
+.search-input {
+  padding: 1%;
+  width: 50vw;
+  height: 60%;
 }
 
 a {
@@ -62,44 +86,58 @@ i {
   font-size: 1.8rem;
 }
 
-.logo {
-  position: relative;
-  margin: 0 5vw;
-  font-family: "Arial Black", bold, sans-serif;
-  text-decoration: underline 0.2rem $navbar-color;
-  transition: $transition-time;
-  &:hover {
-    transition: $transition-time;
-    background-color: $navbar-color;
-    text-decoration: underline 0.2rem #fa6f03;
-  }
+ul {
+  margin: 0;
+  padding: 0.5rem;
+  list-style: none;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
-.search-input {
-  padding: 1%;
-  margin: 0 30vw 0 15vw;
-  width: 25vw;
+li {
+  height: 100%;
+}
+
+.sub-menu-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //position: relative;
+}
+
+.sub-menu {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  display: block;
+  padding-top: 1rem;
+  top: 4rem;
+  width: 20vw;
+  //transform: translateY(-1em);
+  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+  li {
+    width: 100%;
+    padding: 0;
+
+    a {
+      border-top: 1px solid #d0d0d0;
+      width: 100%;
+      border-radius: 0;
+      padding: 0.5rem 0;
+      margin: 0;
+    }
+  }
 }
 
 .sub-menu-parent:focus .sub-menu,
 .sub-menu-parent:focus-within .sub-menu,
 .sub-menu-parent:hover .sub-menu {
-  visibility: visible; /* shows sub-menu */
+  background-color: $navbar-color;
+  visibility: visible;
   opacity: 1;
   z-index: 1;
   transform: translateY(0%);
-  transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
-}
-
-.sub-menu {
-  visibility: hidden; /* hides sub-menu */
-  opacity: 0;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 100%;
-  transform: translateY(-2em);
-  z-index: -1;
-  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+  transition-delay: 0s, 0s, 0.3s;
 }
 

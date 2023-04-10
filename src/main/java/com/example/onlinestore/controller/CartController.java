@@ -19,7 +19,7 @@ public class CartController {
 
     @PostConstruct
     public void initCarts() {
-        //cartService.initCarts();
+        cartService.initCarts();
     }
 
     @GetMapping

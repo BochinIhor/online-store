@@ -19,10 +19,6 @@ export class RegisterComponent {
               private router: Router) {
   }
 
-  ngOnInit() {
-
-  }
-
   registerForm = this.formBuilder.group({
     username: this.formBuilder.control('', Validators.compose([Validators.required, Validators.minLength(5)])),
     email: this.formBuilder.control('', Validators.email),
@@ -35,15 +31,15 @@ export class RegisterComponent {
   })
 
   proceedRegistration() {
-    if (this.registerForm.valid) {/*
-      if (this.authService.canRegister(<User>this.registerForm.value)) {*/
+    if (this.registerForm.valid) {
+      if (this.authService.canRegister(<User>this.registerForm.value)) {
       this.authService.proceedRegistration(<User>this.registerForm.value).subscribe(res => {
         this.toastrService.success('You may now proceed to login.', 'Registered successfully');
         this.router.navigateByUrl('/login');
-      })/*
+      })
       } else {
         this.toastrService.warning("User already exists");
-      }*/
+      }
     } else {
       this.toastrService.warning("Please enter valid data");
     }
