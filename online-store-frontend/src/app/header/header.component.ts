@@ -25,9 +25,7 @@ export class HeaderComponent implements DoCheck {
 
   ngDoCheck(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
-    if (this.router.url == "/") {
-      if (this.authService.getUserRole() == "admin") this.isAdmin = true;
-    } else this.isAdmin = false;
+      this.isAdmin = this.authService.getUserRole() == "admin";
   }
 
   openCart() {

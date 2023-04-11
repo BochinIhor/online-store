@@ -1,17 +1,38 @@
 <div class="content">
 
-<div class="product-block" *ngFor="let product of products">
-  <div class="info-block">
-    <img src="{{getProductImage(product)}}" alt="">
-    <h3>{{curProduct.fullName}}</h3>
+  <div class="header">
+    <h1>Кошик</h1>
+    <button type="button" class="modal__close" aria-label="Закрити модальне вікно" (click)="closeDialog()"><i class="bi bi-x-lg"></i></button>
   </div>
-  <div class="count-block">
 
+  <div class="product-block" *ngFor="let product of products">
+    <div class="info-block">
+      <div class="img-block"><img src="{{getProductImage(product)}}" alt=""></div>
+      <div><p>{{product.fullName}}</p></div>
+    </div>
+  <div class="count-block">
+    <div class="counter">
+      <button><i class="bi bi-dash-lg" (click)="decrease(product)"></i></button>
+      <input type="text" value="{{getProductQuantity(product)}}" [id]="">
+      <button><i class="bi bi-plus-lg" (click)="increase(product)"></i></button>
+    </div>
+    <p>{{getProductPrice(product)}}₴</p>
   </div>
 </div>
 
 <div class="finish-block">
+  <div>
+  <button (click)="closeDialog()">
+    Продовжити покупки
+  </button>
+  </div>
 
+  <div>
+  <span><b>{{totalPrice}} ₴</b></span>
+  <button>
+    Оформити покупку
+  </button>
+  </div>
 </div>
 
 </div>

@@ -16,12 +16,11 @@ export class CartComponent implements OnInit {
 
   currentUser = sessionStorage.getItem('username');
   newProduct: Product;
-  curProduct!: Product;
   productsString: string[] = [];
   products: Product[] = [];
   ids: number[] = [];
   counts: number[] = [];
-  count!: number;
+  totalPrice: number;
 
 
   @Output() submitClicked = new EventEmitter<any>();
@@ -31,9 +30,11 @@ export class CartComponent implements OnInit {
               public cartDialog: MatDialogRef<CartComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Product) {
     this.newProduct = data;
+    this.totalPrice = 0;
   }
 
   ngOnInit() {
+    console.log(sessionStorage.getItem('cart'));
     this.getProductList();
   }
 
@@ -41,37 +42,83 @@ export class CartComponent implements OnInit {
     // @ts-ignore
     this.productsString = sessionStorage.getItem('cart').split(";");
     for(let i = 0; i < this.productsString.length; i++) {
-      this.ids[i] = Number(this.productsString[i].split(',')[0]);
+      this.ids.push(Number(this.productsString[i].split(',')[0]));
+      this.counts.push(Number(this.productsString[i].split(',')[1]));
       this.productService.getProductById(this.ids[i]).subscribe(res => {
-        this.products[i] = res;
-      }).unsubscribe();
+        this.products.push(res);
+        this.totalPrice += this.products[i].price * this.counts[i];
+      });
     }
-    console.log(this.products);
-  }
-
-  getProductData(prod: Product) {
-    this.productService.getProductById(prod.id).subscribe(res => {
-      this.curProduct = res;
-    }).unsubscribe();
-    if(this.curProduct != null) return this.curProduct;
-    return null;
   }
 
   getProductImage(prod: Product) {
     let preview;
-    if(this.getProductData(prod) != null)
-      { // @ts-ignore
-        preview = this.getProductData(prod).imageUrls.split(",")[0];
-        return preview;
+    preview = prod.imageUrls.split(",")[0];
+    return preview;
+  }
+
+  getProductQuantity(prod: Product) {
+    let id = prod.id;
+    for(let i = 0; i < this.ids.length; i++) {
+      if(id == this.ids[i]) {
+        return this.counts[i];
       }
+    }
     return null;
   }
 
+  getProductPrice(prod: Product) {
+    let id = prod.id;
+    for(let i = 0; i < this.ids.length; i++) {
+      if(id == this.ids[i]) {
+        return this.counts[i] * prod.price;
+      }
+    }
+    return prod.price;
+  }
 
+  increase(prod: Product) {
+    let id = prod.id;
+    for(let i = 0; i < this.ids.length; i++) {
+      if(id == this.ids[i]) {
+        this.counts[i] += 1;
+        this.totalPrice += prod.price;
+        return this.counts[i];
+      }
+    }
+    return null;
+  }
 
+  decrease(prod: Product) {
+    let id = prod.id;
+    for(let i = 0; i < this.ids.length; i++) {
+      if(id == this.ids[i]) {
+        this.counts[i] -= 1;
+        this.totalPrice -= prod.price;
+        return this.counts[i];
+      }
+    }
+    return null;
+  }
 
+  updateCart() {
+    let cart = new Cart();
+    // @ts-ignore
+    cart.username = sessionStorage.getItem('username');
+    // @ts-ignore
+    cart.products = sessionStorage.getItem('cart');
+    this.cartService.updateCart(cart);
+  }
 
-  saveCart() {
-    //this.cartService.saveCart()
+  closeDialog() {
+    let cartString = "";
+    for(let i = 0; i < this.ids.length; i++) {
+      cartString += this.ids[i] + "," + this.counts[i] + ";";
+    }
+    cartString = cartString.slice(0, -1);
+    console.log(cartString);
+    sessionStorage.setItem('cart', cartString);
+    this.updateCart();
+    this.cartDialog.close();
   }
 }

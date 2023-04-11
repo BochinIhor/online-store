@@ -47,7 +47,7 @@
       </div>
       <p class="product-title" (click)="goToProduct(product.id)">{{product.name}}</p>
       <div class="price-block">
-        <span class="product-price">{{product.price | currency: "UAH "}}</span>
+        <span class="product-price">{{product.price}}₴</span>
         <button (click)="addToCart(product)"><i class="bi bi-cart"></i></button>
       </div>
       <span></span>
